@@ -54,21 +54,41 @@ function pressedOperator (a) {
         return;
     }
     currentOperator = a;
+    // if(storedValue != '') {
+    //     equals();
+    // }
     storedValue = displayValue;
     displayValue = '';
-    display.textContent = '';
+    // display.textContent = '';
 }
 
+// Performs the applicable operation.
 function equals () {
+    if(currentOperator == '') {
+        alert('You must choose an operator first.');
+        return;
+    }
+    if(displayValue == '' || storedValue == '') {
+        alert('You must enter a value first.');
+        return;
+    }
     displayValue = operate(currentOperator, storedValue, displayValue);
     display.textContent = displayValue;
     storedValue = '';
+    currentOperator = '';
 }
 
+// Clears the display and makes all values equal nothing.
 function clear () {
     displayValue = '';
     storedValue = '';
     currentOperator = '';
+    display.textContent = displayValue;
+}
+
+// Multiplies the displayValue number by -1. Makes it negative or positive.
+function negative () {
+    displayValue = displayValue * -1;
     display.textContent = displayValue;
 }
 
@@ -78,7 +98,7 @@ let currentOperator = '';
 const display = document.querySelector('#display');
 
 // All numbered buttons below will add to the total variable like a string. i.e. pressing 1, then 2, then 3, will
-// make total = '123'.
+// make total = '123'. 
 const btnOne = document.querySelector('#one');
 btnOne.addEventListener("click", function() {populateDisplay('1');});
 
@@ -108,6 +128,14 @@ btnNine.addEventListener("click", function() {populateDisplay('9');});
 
 const btnZero = document.querySelector('#zero');
 btnZero.addEventListener("click", function() {populateDisplay('0');});
+
+// Decimal button
+const btnDecimal = document.querySelector('#decimal');
+btnDecimal.addEventListener("click", function() {populateDisplay('.');});
+
+// Button that makes the display number positive or negative.
+const btnNegative = document.querySelector('#negative');
+btnNegative.addEventListener("click", function() {negative();});
 
 // Operator buttons
 const btnPlus = document.querySelector('#plus');
