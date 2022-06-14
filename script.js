@@ -41,6 +41,17 @@ function operate(operator, a, b) {
 }
 
 function populateDisplay(a) {
+    // Clears the display if a number is entered right after clicking on Equals.
+    // This prevents adding onto the display value after performing an equal button-click.
+    if(nextNumberClearDisplay) {
+        displayValue = '';
+        nextNumberClearDisplay = false;
+    }
+    // Prevents entering more than one decimal for a number.
+    if(a == '.' && displayValue.includes('.')) {
+        alert("You can't have more than one decimal.");
+        return;
+    }
     displayValue += a;
     display.textContent = displayValue;
 }
@@ -53,10 +64,10 @@ function pressedOperator (a) {
         alert("You need to input a number first.");
         return;
     }
+    if(storedValue != '') {
+        equals();
+    }
     currentOperator = a;
-    // if(storedValue != '') {
-    //     equals();
-    // }
     storedValue = displayValue;
     displayValue = '';
     // display.textContent = '';
@@ -75,7 +86,7 @@ function equals () {
     displayValue = operate(currentOperator, storedValue, displayValue);
     display.textContent = displayValue;
     storedValue = '';
-    currentOperator = '';
+    nextNumberClearDisplay = true;
 }
 
 // Clears the display and makes all values equal nothing.
@@ -92,10 +103,16 @@ function negative () {
     display.textContent = displayValue;
 }
 
+// !!!!!!!!!!!!!!!!!!!!! //
+// I need to fix the display. After clicking on Equals, the display shows the solution value, but if I then click on
+// another number, it just adds on to the end of that equals number. I need the new number pressed to clear
+// the display somehow.
+
 let displayValue = '';
 let storedValue = '';
 let currentOperator = '';
 const display = document.querySelector('#display');
+let nextNumberClearDisplay = false;
 
 // All numbered buttons below will add to the total variable like a string. i.e. pressing 1, then 2, then 3, will
 // make total = '123'. 
