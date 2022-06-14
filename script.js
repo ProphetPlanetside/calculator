@@ -2,19 +2,22 @@ function add(a, b) {
     // Converts the variable to a number, in case it comes in as a String.
     a = Number(a);
     b = Number(b);
-    return a + b;
+    return Math.round(((a + b) + Number.EPSILON) * 100) / 100
+    //return a + b;
 }
 
 function subtract(a, b) {
     a = Number(a);
     b = Number(b);
-    return a - b;
+    return Math.round(((a - b) + Number.EPSILON) * 100) / 100
+    //return a - b;
 }
 
 function multiply(a, b) {
     a = Number(a);
     b = Number(b);
-    return a * b;
+    return Math.round(((a * b) + Number.EPSILON) * 100) / 100
+    //return a * b;
 }
 
 function divide(a, b) {
@@ -22,9 +25,12 @@ function divide(a, b) {
     b = Number(b);
     if (b == 0) {
         alert("You can't divide by zero!");
-        return;
+        // Reset display value
+        displayValue = '';
+        return '';
     }
-    return a / b;
+    return Math.round(((a / b) + Number.EPSILON) * 100) / 100
+    //return a / b;
 }
 
 // At this time, this function expects a string for the operator and will throw an error if a string isn't
