@@ -60,7 +60,8 @@ function populateDisplay(a) {
 // Stores the first (left-side value into storedValue), and makes the displayValue = 0.
 // Also clears the display.
 function pressedOperator (a) {
-    if(displayValue == '') {
+    // '' = '0' so this if statement needs both conditions.
+    if(displayValue == '' && displayValue != '0') {
         alert("You need to input a number first.");
         return;
     }
@@ -79,7 +80,8 @@ function equals () {
         alert('You must choose an operator first.');
         return;
     }
-    if(displayValue == '' || storedValue == '') {
+    // '' = '0' so this if statement needs both conditions.
+    if((displayValue == '' || storedValue == '') && (displayValue != '0' && storedValue != '0')) {
         alert('You must enter a value first.');
         return;
     }
@@ -104,9 +106,7 @@ function negative () {
 }
 
 // !!!!!!!!!!!!!!!!!!!!! //
-// I need to fix the display. After clicking on Equals, the display shows the solution value, but if I then click on
-// another number, it just adds on to the end of that equals number. I need the new number pressed to clear
-// the display somehow.
+// Found a new bug where '0' (zero) is the same thing as '', causing issues with my if statements.
 
 let displayValue = '';
 let storedValue = '';
