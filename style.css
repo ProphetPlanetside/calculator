@@ -2,6 +2,7 @@
     height: 30px;
     width: 125px;
     border: 1px solid green;
+    border-right: 0px;
     padding-top: 5px;
     margin-bottom: 15px;
     font-size: 25px;
