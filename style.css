@@ -1,6 +1,27 @@
 #display {
-    height: 20px;
+    height: 30px;
     width: 125px;
     border: 1px solid green;
-    margin-bottom: 10px;
+    padding-top: 5px;
+    margin-bottom: 15px;
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #zero, #negative, #decimal, #equals {
+    height: 30px;
+    width: 38px;
+    font-size: 20px;
+}
+
+#plus, #minus, #multiply, #divide {
+    height: 30px;
+    width: 27.5px;
+    font-size: 20px;
+}
+
+#clear {
+    height: 30px;
+    width: 80px;
+    font-size: 20px;
 }
